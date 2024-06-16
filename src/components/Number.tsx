@@ -8,10 +8,10 @@ interface NumberProps {
     setSelectedNums: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const Number:React.FC<NumberProps> = ({value}) => {
+const Number:React.FC<NumberProps> = ({value, selectedNums}) => {
 
   return (
-    <Center bg='blue.100' w={6} h={8}>
+    <Center bg={selectedNums.includes(value)? 'red.200' : 'cyan.200'} w={20} h={20} borderRadius='full' border='1px'>
     {value}
     </Center>
   )

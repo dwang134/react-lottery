@@ -27,8 +27,8 @@ function App() {
       <Spacer/>
       <Bank/>
       </Flex>
-      <Box bg='cyan.100' w='50%'>
-      <VStack>
+      <Box bg='cyan.100' w='50%' height='100%'>
+      <VStack direction='column' height='80%'>
         <Numbers numbers={numbers} selectedNums={selectedNums} setSelectedNums={setSelectedNums}/>
         <HStack>
         <Button colorScheme='teal' variant='outline'>Cash</Button>
