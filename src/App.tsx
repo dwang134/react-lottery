@@ -1,34 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Header from './components/Header'
+import Bank from './components/Bank'
+import Numbers from './components/Numbers'
+import TicketDetail from './components/TicketDetail'
+import { Box, HStack, Button, Spacer, VStack, Container, Flex} from '@chakra-ui/react'
+import { useState } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [numbers, setNumbers] = useState<number[]>(Array.from({ length: 20 }, (_, i) => i + 1));
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Container maxW='80vw' maxH='100vh' w='100vw' h='100vh' bg='gray.200' pt={4}>
+    <Header/>
+    <Flex direction='row' height='80%' justify='center'>
+      <Flex direction='column' align='center' width='20%' height='70%' bg='teal.50' p={4}>
+      <Box width='100%' height='30%' bg='purple.300'>some image</Box>
+      <Spacer/>
+      <Bank/>
+      </Flex>
+      <Box bg='cyan.100' w='50%'>
+      <VStack>
+        <Numbers numbers={numbers}/>
+        <HStack>
+        <Button colorScheme='teal' variant='outline'>Cash</Button>
+        <Spacer/>
+        <Button colorScheme='teal' variant='outline'>Clear</Button>
+        </HStack>
+      </VStack>
+      </Box>
+      <TicketDetail/>
+    </Flex>
+    </Container>
   )
 }
 
