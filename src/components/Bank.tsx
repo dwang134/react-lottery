@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Center, Grid, GridItem, Text, VStack, HStack, Button, Spinner} from '@chakra-ui/react';
+import {Center, Grid, GridItem, Text, VStack, HStack, Button, Spinner, Highlight} from '@chakra-ui/react';
 import PaidIcon from '@mui/icons-material/Paid';
 
 interface BankProps {
@@ -36,7 +36,7 @@ const Bank:React.FC<BankProps> = ({balance, setBalance, total, setTotal, finishS
 
   return (
     <VStack w='100%' h='60%' >
-      <Text>{msg}</Text>
+      <Text color='red.400' fontSize={20}>{msg}</Text>
       <Grid templateColumns='repeat(2, 1fr)' gap={4} w='80%'>
         {cashOptions.map((cash:number, index: number)=> 
           <GridItem w={32} h={24}  key={index} onClick={ ()=>addToTotal(cash) }>
