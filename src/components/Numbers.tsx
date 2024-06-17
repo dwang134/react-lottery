@@ -12,45 +12,17 @@ interface NumbersProps {
 
 const Numbers:React.FC<NumbersProps> = ({numbers, selectedNums, setSelectedNums, finishSelect, setFinishSelect}) => {
 
-    useEffect(()=> {
-        if (selectedNums.length == 5){
-            setFinishSelect(true);
-        }
-    }, [selectedNums])
-
-
-    const toggleSelect = (value: number) => {
-
-        //check if value belongs in selected numbers array
-        const index: number = selectedNums.indexOf(value);
-
-        //if it finds an index, then it exists
-        if (index > -1){
-            //if exist
-            setSelectedNums(selectedNums.filter((number) => number!= value));
-
-        }else{
-            //check the length of selected numbers first, cannot be more than 5
-            if (selectedNums.length < 5){
-                setSelectedNums(prevNums => [...prevNums, value]);
-            }else{
-                //shouldn't be abel to add anymore, turn on modal
-                //setModalState(true);
-                //set Bank toggle to on
-            }
-       
-        }
-    }
-
-
   return (
-    <Grid templateColumns='repeat(5, 2fr)' gap={2} w='100%' height='80%' alignItems='center'> 
+    <Flex direction='row' justifyContent='center' alignItems='center' w='100%' h='60%'>
+    <Grid templateColumns='repeat(5, 1fr)' gap={2} pl={8}> 
     {numbers.map((number, index)=> 
-        <GridItem w={28} onClick={()=> toggleSelect(number)} key={index} cursor='pointer'>
-        <Number value={number} selectedNums={selectedNums} setSelectedNums={setSelectedNums}/>
+        <GridItem w={28} key={index}>
+        <Number value={number} selectedNums={selectedNums} setSelectedNums={setSelectedNums} finishSelect={finishSelect} setFinishSelect={setFinishSelect}/>
         </GridItem>
     )}
     </Grid>
+    </Flex>
+
   )
 }
 

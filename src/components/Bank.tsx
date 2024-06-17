@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {Center, Grid, GridItem, Text, VStack} from '@chakra-ui/react';
+import {Center, Grid, GridItem, Text, VStack, HStack, Button, Spinner} from '@chakra-ui/react';
+import PaidIcon from '@mui/icons-material/Paid';
 
 interface BankProps {
   balance: number;
@@ -7,9 +8,11 @@ interface BankProps {
   total: number;
   setTotal: React.Dispatch<React.SetStateAction<number>>;
   finishSelect: boolean;
+  msg: string;
+  setMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Bank:React.FC<BankProps> = ({balance, setBalance, total, setTotal, finishSelect}) => {
+const Bank:React.FC<BankProps> = ({balance, setBalance, total, setTotal, finishSelect, msg, setMsg}) => {
 
   const [cashOptions, setCashOptions] = useState<number []>([1,5,10,20]);
 
@@ -18,26 +21,33 @@ const Bank:React.FC<BankProps> = ({balance, setBalance, total, setTotal, finishS
     //check if there's 5 numbers in selected numbers yet
     console.log(finishSelect);
     //check if there's any more money in balance
-    if (balance <= 0){
-      //tell user they are BROKE
+    if (balance <=0){
+        setMsg("You are BROKE! get more money")
     }else{
-      (finishSelect) && setTotal(prevTotal => prevTotal + cashInput);
-      setBalance(prevBalance=> prevBalance - cashInput);
+      if (balance < cashInput){
+        setMsg("You don't have enough money");
+      }else{
+        (finishSelect) && setTotal(prevTotal => prevTotal + cashInput);
+        setBalance(prevBalance=> prevBalance - cashInput);
+        setMsg("");
+      }
     }
   }
 
   return (
-    <VStack w='100%' h='60%'>
-      <Grid templateColumns='repeat(2, 1fr)' gap={3} w='100%'>
+    <VStack w='100%' h='60%' >
+      <Text>{msg}</Text>
+      <Grid templateColumns='repeat(2, 1fr)' gap={4} w='80%'>
         {cashOptions.map((cash:number, index: number)=> 
-          <GridItem w={32} h={32} bg='blue.500' borderRadius='10px' key={index} onClick={()=>addToTotal(cash)}>
-          <Center h='100%' w='100%'>
-          <Text fontSize='3xl' cursor='pointer'>${cash}</Text>
-          </Center>
+          <GridItem w={32} h={24}  key={index} onClick={ ()=>addToTotal(cash) }>
+          <Button bg='gray.50' borderRadius='10px' border='1px' w='100%' h='100%' isLoading={finishSelect ? false : true}>
+            <Text mt={0.5}><PaidIcon/></Text>
+            <Text fontSize='3xl' cursor={finishSelect ? 'pointer' : ''}>{cash}</Text>
+          </Button>
           </GridItem>
         )}
       </Grid>
-      <Text as='samp' fontSize='md'>Your Balance is currenty: ${balance}</Text>
+      <Text as='samp' fontSize='md' pt={4}>Your Balance is currently: ${balance}</Text>
     </VStack>
   )
 }
