@@ -63,8 +63,8 @@ function App() {
   return (
     <Container maxW='80vw' maxH='100vh' w='100vw' h='100vh'  pt={4} bg='white'>
     <Header/>
-    <Flex direction='row' width='100%' height='80%' justify='center'>
-      <Flex direction='column' align='center' justify='center' width='20vw' height='70%' p={4}>
+    <Flex direction='row' width='100%' height='80%' justify='space-between' >
+      <Flex direction='column' align='center' justify='center' width='20vw' height='70%' p={4} maxW='20vw'>
       <Bank balance={balance} setBalance={setBalance} total={total} setTotal={setTotal} finishSelect={finishSelect} msg={msg} setMsg={setMsg}/>
       <Box w='80%'>
       {tickets.map((ticket)=> (
@@ -76,6 +76,7 @@ function App() {
       </Flex>
       <VStack direction='column' width='40vw' height='100%' p={4}>
         <Numbers numbers={numbers} selectedNums={selectedNums} setSelectedNums={setSelectedNums} finishSelect={finishSelect} setFinishSelect={setFinishSelect}/>
+        <br/>
         <HStack>
         <Button colorScheme='teal' variant='outline' onClick={()=> createNewTicket()}>Cash</Button>
         <Spacer/>

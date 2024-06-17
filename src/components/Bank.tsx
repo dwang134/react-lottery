@@ -35,11 +35,11 @@ const Bank:React.FC<BankProps> = ({balance, setBalance, total, setTotal, finishS
   }
 
   return (
-    <VStack w='100%' h='60%' >
+    <VStack w='80%' h='80%' align='center' justify='center'>
       <Text color='red.400' fontSize={20}>{msg}</Text>
-      <Grid templateColumns='repeat(2, 1fr)' gap={4} w='80%'>
+      <Grid templateColumns='repeat(2, 1fr)' gap={4} w='100%'>
         {cashOptions.map((cash:number, index: number)=> 
-          <GridItem w={32} h={24}  key={index} onClick={ ()=>addToTotal(cash) }>
+          <GridItem w='100%' h={24}  key={index} onClick={ ()=>addToTotal(cash) }>
           <Button bg='gray.50' borderRadius='10px' border='1px' w='100%' h='100%' isLoading={finishSelect ? false : true}>
             <Text mt={0.5}><PaidIcon/></Text>
             <Text fontSize='3xl' cursor={finishSelect ? 'pointer' : ''}>{cash}</Text>

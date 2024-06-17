@@ -14,7 +14,7 @@ const Numbers:React.FC<NumbersProps> = ({numbers, selectedNums, setSelectedNums,
 
   return (
     <Flex direction='row' justifyContent='center' alignItems='center' w='100%' h='60%'>
-    <Grid templateColumns='repeat(5, 1fr)' gap={2} pl={8}> 
+    <Grid templateColumns={['repeat(2, 1fr)','repeat(4, 1fr)', 'repeat(5, 1fr)']} gap={2} pl={8}> 
     {numbers.map((number, index)=> 
         <GridItem w={28} key={index}>
         <Number value={number} selectedNums={selectedNums} setSelectedNums={setSelectedNums} finishSelect={finishSelect} setFinishSelect={setFinishSelect}/>
