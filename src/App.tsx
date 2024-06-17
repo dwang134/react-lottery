@@ -36,14 +36,13 @@ function App() {
   return (
     <Container maxW='80vw' maxH='100vh' w='100vw' h='100vh'  pt={4}>
     <Header/>
-    <Flex direction='row' height='80%' justify='center'>
-      <Flex direction='column' align='center' width='20%' height='70%' p={4}>
-      <Box width='100%' height='30%' bg='purple.300'>some image</Box>
+    <Flex direction='row' width='80vw' height='80vh' justify='center'>
+      <Flex direction='column' align='center' width='20vw' height='70%' p={4}>
+      <Box width='100%' height='30%'>some image</Box>
       <Spacer/>
       <Bank balance={balance} setBalance={setBalance} total={total} setTotal={setTotal} finishSelect={finishSelect}/>
       </Flex>
-      <Box  w='50%' height='100%'>
-      <VStack direction='column' height='80%'>
+      <VStack direction='column' width='40vw' height='100%' p={4}>
         <Numbers numbers={numbers} selectedNums={selectedNums} setSelectedNums={setSelectedNums} finishSelect={finishSelect} setFinishSelect={setFinishSelect}/>
         <HStack>
         <Button colorScheme='teal' variant='outline'>Cash</Button>
@@ -53,7 +52,6 @@ function App() {
         <Button colorScheme='teal' variant='outline' onClick={()=>addRandomNum()}>select Random</Button>
         </HStack>
       </VStack>
-      </Box>
       <TicketDetail selectedNums={selectedNums} total={total}/>
     </Flex>
     </Container>

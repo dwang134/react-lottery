@@ -9,7 +9,7 @@ const TicketDetail:React.FC<TicketDetailProps> = ({selectedNums, total}) => {
 
 
     return(
-        <Box bg='cyan.50' w='20%' height='100%' pl={2} pt={2} borderRadius='2px'>
+        <Box bg='cyan.50' w='15vw' height='100%' pl={2} pt={2} borderRadius='4px'>
         <Text as='kbd'>Numbers Selected: </Text>
         {selectedNums.map((num, index)=> (
             <Text key={index}>Mark: {num}</Text>

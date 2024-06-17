@@ -44,15 +44,13 @@ const Numbers:React.FC<NumbersProps> = ({numbers, selectedNums, setSelectedNums,
 
 
   return (
-    <Flex w='100%' height='100%' align='center' justify='center'>
-    <Grid templateColumns='repeat(5, 2fr)' gap={3} height='80%'> 
+    <Grid templateColumns='repeat(5, 2fr)' gap={2} w='100%' height='80%' alignItems='center'> 
     {numbers.map((number, index)=> 
         <GridItem w={28} onClick={()=> toggleSelect(number)} key={index} cursor='pointer'>
         <Number value={number} selectedNums={selectedNums} setSelectedNums={setSelectedNums}/>
         </GridItem>
     )}
     </Grid>
-    </Flex>
   )
 }
 
